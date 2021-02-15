@@ -323,6 +323,9 @@ print_r($array10);
 <?php
 
 echo 'Sugeneruokite 101 elemento masyvą su atsitiktiniais skaičiais nuo 0 iki 300. Reikšmes kurios tame masyve yra ne unikalios pergeneruokite iš naujo taip, kad visos reikšmės masyve būtų unikalios. Išrūšiuokite masyvą taip, kad jo didžiausia reikšmė būtų masyvo viduryje, o einant nuo jos link masyvo pradžios ir pabaigos reikšmės mažėtų. Paskaičiuokite pirmos ir antros masyvo dalies sumas (neskaičiuojant vidurinės). Jeigu sumų skirtumas (modulis, absoliutus dydis) yra didesnis nei | 30 | rūšiavimą kartokite. (Kad sumos nesiskirtų viena nuo kitos daugiau nei per 30)';
+echo '<br><br>';
+
+// sukuriam masyva su atsitiktiniais skaiciais
 $array11 = []; 
 while (count($array11) < 101) {
     $numb11 = rand(0, 300);
@@ -331,11 +334,17 @@ while (count($array11) < 101) {
     }
 }
 echo '<pre>';
-sort($array11);
+
+echo 'Pradine suma: ' . array_sum($array11);
+echo '<br><br>';
+
+
+// isrusiuojam didejimo tvarka
+sort($array11); 
 print_r($array11);
 echo '<br><br>';
 
-echo 'masyvo ilgis: ' . count($array11);
+// padarom du atskirus masyvus su kas atra reiksme
 $array11A = [];
 $array11B = [];
 for ($i = 0; $i < count($array11); $i+=2) {
@@ -345,23 +354,32 @@ for ($i = 1; $i < count($array11); $i+=2) {
     array_push($array11B, $array11[$i]);    
 }
 echo '<br><br>';
-rsort($array11A);
 print_r($array11A);
 
-$sum11A = array_sum($array11A) - $array11A[0];
+// sumuoju kaire puse be didziausios reiksmes
+$sum11A = array_sum($array11A) - $array11A[50];
 echo '<br><br>';
 echo 'Suma A be didziausios reiksmes: ' . $sum11A;
 
 echo '<br><br>';
+// apverciam antra masyva
+rsort($array11B);
 print_r($array11B);
+
+// sumuoju desine puse
 $sum11B = array_sum($array11B);
 echo '<br><br>';
 echo 'Suma B: ' . $sum11B;
+echo '<br><br>';
 
+// randu skirtuma
 $subtraction = $sum11B - $sum11A;
 echo 'Skirtumas yra: ' . $subtraction;
 
-$array11C = array_merge($array11B, $array11A);
+// sujungiam masyvus
+$array11C = array_merge($array11A, $array11B);
 echo '<br><br>';
 print_r($array11C);
 echo '<br><br>';
+
+echo 'Paskute suma: ' . array_sum($array11C);
