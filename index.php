@@ -1,7 +1,10 @@
 <h2>ND nr.1</h2>
 
 <?php
+// echo '<pre>';
+echo 'Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.';
 $array = [];
+// echo '<pre>';
 for ($i = 0; $i < 30; $i++) {
     array_push($array, rand(5, 25));
 }
@@ -87,7 +90,7 @@ echo 'h) Suraskite pirmą (mažiausią) indeksą, kurio elemento reikšmė dides
 echo '<br><br>';
 // print_r($array);
 // echo '<br><br>';
-for ($i=0; $i < count($array); $i++) { 
+for ($i = 0; $i < count($array); $i++) {
     if ($array[$i] < 10) {
         echo $i;
         break;
@@ -97,15 +100,268 @@ echo '<br><br>';
 echo 'i) Naudodami funkciją unset() iš masyvo ištrinkite visus elementus turinčius porinį indeksą';
 echo '<br><br>';
 $array2I = $array;
-for ($i = 0; $i < count($array2I); $i++) {
+// foreach ($array2I as $key => $value) {
+//     if ($key % 2 === 0) {
+//         unset($array2I[$key]);
+//     }
+// }
+$ilgis = count($array2I);
+for ($i = 0; $i < $ilgis; $i++) {
     if ($i % 2 === 0) {
         unset($array2I[$i]);
     }
 }
 print_r($array2I);
+echo '<br><br>';
+
+echo count($array2I);
 ?>
 
 <h2>ND nr.3</h2>
 
 <?php
 
+echo 'Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.';
+// echo '<br><br>';
+$array3 = [];
+for ($i = 0; $i < 200; $i++) {
+    $randLetter = chr(rand(65, 68));
+    array_push($array3, $randLetter);
+}
+$countA = 0;
+$countB = 0;
+$countC = 0;
+$countD = 0;
+foreach ($array3 as $key => $value) {
+    ($value === 'A') ? $countA++ : '';
+    ($value === 'B') ? $countB++ : '';
+    ($value === 'C') ? $countC++ : '';
+    ($value === 'D') ? $countD++ : '';
+}
+echo '<pre>';
+// print_r($array3);
+echo '</pre>';
+echo '<br>';
+echo "'A' raidžių yra: $countA";
+echo '<br>';
+echo "'B' raidžių yra: $countB";
+echo '<br>';
+echo "'C' raidžių yra: $countC";
+echo '<br>';
+echo "'D' raidžių yra: $countD";
+?>
+
+<h2>ND nr.4</h2>
+
+<?php
+
+echo 'Išrūšiuokite 3 uždavinio masyvą pagal abecėlę.';
+
+$array4 = $array3;
+// echo '<pre>';
+sort($array4);
+print_r($array4);
+?>
+
+<h2>ND nr.5</h2>
+
+<?php
+
+echo 'Sugeneruokite 3 masyvus pagal 3 uždavinio sąlygą. Sudėkite masyvus, sudėdami atitinkamas reikšmes. Paskaičiuokite kiek unikalių reikšmių kombinacijų gavote.';
+echo '<br>';
+$array5A = [];
+$array5B = [];
+$array5C = [];
+for ($i = 0; $i < 200; $i++) {
+    $randLetter = chr(rand(65, 68));
+    array_push($array5A, $randLetter);
+}
+for ($i = 0; $i < 200; $i++) {
+    $randLetter = chr(rand(65, 68));
+    array_push($array5B, $randLetter);
+}
+for ($i = 0; $i < 200; $i++) {
+    $randLetter = chr(rand(65, 68));
+    array_push($array5C, $randLetter);
+}
+// echo '<br><br>';
+// print_r($array5A);
+// echo '<br><br>';
+// print_r($array5B);
+// echo '<br><br>';
+// print_r($array5C);
+$array5D = [];
+for ($i=0; $i < 200; $i++) {
+    $element5 = $array5A[$i].$array5B[$i].$array5C[$i]; 
+    array_push($array5D, $element5);
+}
+echo '<pre>';
+// print_r($array5D);
+// echo '<br>';
+$array6D = [];
+foreach ($array5D as $value) {
+    if (!in_array($value, $array6D)) {
+        array_push($array6D, $value);
+    }
+}
+echo '</pre>';
+print_r($array6D);
+echo '<br>';
+echo '</pre>';
+
+echo 'Iš viso skirtingų kombinacijų yra: '. count($array6D);
+?>
+
+<h2>ND nr.6</h2>
+
+<?php
+
+echo 'Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).';
+echo '<br><br>';
+$array6A = [];
+$array6B = [];
+for($i = 0; $i < 100; $i++) {
+    $element = rand(100, 999);
+    array_push($array6A, $element);
+    $element2 = rand(100, 999);
+    array_push($array6B, $element2);
+}
+$array6C = [];
+$array6F = [];
+foreach($array6A as $value) {
+    if (!in_array($value, $array6C)) {
+        array_push($array6C, $value);
+    }
+}
+foreach ($array6B as $value) {
+    if (!in_array($value, $array6F)) {
+        array_push($array6F, $value);
+    }
+}
+// echo '<pre>';
+// sort($array6C);
+print_r($array6C);
+echo '<br><br>';
+// sort($array6F);
+print_r($array6F);
+echo '<br>';
+?>
+
+<h2>ND nr.7</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą, kuris būtų sudarytas iš reikšmių, kurios yra pirmame 6 uždavinio masyve, bet nėra antrame 6 uždavinio masyve.';
+echo '<br><br>';
+$array7A = $array6A;
+$array7B = $array6B;
+$array7C = [];
+for ($i = 0; $i < 100; $i++) {
+    if(!in_array($array7A[$i], $array7B)) {
+        array_push($array7C, $array7A[$i]);
+    }
+}
+// sort($array7C);
+print_r($array7C);
+?>
+
+<h2>ND nr.8</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą iš elementų, kurie kartojasi abiejuose 6 uždavinio masyvuose.';
+echo '<br><br>';
+$array8A = $array6A;
+$array8B = $array6B;
+$array8C = [];
+for ($i = 0; $i < 100; $i++) {
+    if(in_array($array8A[$i], $array8B)) {
+        array_push($array8C, $array8A[$i]);
+        // $array8C[$i] = $array8A[$i];
+    }
+}
+// sort($array8C);
+print_r($array8C);
+?>
+ 
+<h2>ND nr.9</h2>
+
+<?php
+
+echo 'Sugeneruokite masyvą, kurio indeksus sudarytų pirmo 6 uždavinio masyvo reikšmės, o jo reikšmės būtų iš antrojo masyvo.';
+echo '<br><br>';
+print_r($array6A);
+echo '<br><br>';
+print_r($array6B);
+echo '<br><br>';
+for ($i=0; $i < 100; $i++) { 
+    $array9[$array6A[$i]] = $array6B[$i];
+}
+// echo '<pre>';
+print_r($array9);
+?>
+
+<h2>ND nr.10</h2>
+
+<?php
+
+echo 'Sugeneruokite 10 skaičių masyvą pagal taisyklę: Du pirmi skaičiai- atsitiktiniai nuo 5 iki 25. Trečias, pirmo ir antro suma. Ketvirtas- antro ir trečio suma. Penktas trečio ir ketvirto suma ir t.t.';
+echo '<br><br>';
+$num1 = rand(5, 25);
+$num2 = rand(5, 25);
+$array10 = [$num1, $num2];
+for ($i=0; $i < 8; $i++) { 
+    $array10[$i+2] = $array10[$i] + $array10[$i+1];
+}
+echo '<pre>';
+print_r($array10);
+// echo '</pre>';
+?>
+
+<h2>ND nr.11</h2>
+
+<?php
+
+echo 'Sugeneruokite 101 elemento masyvą su atsitiktiniais skaičiais nuo 0 iki 300. Reikšmes kurios tame masyve yra ne unikalios pergeneruokite iš naujo taip, kad visos reikšmės masyve būtų unikalios. Išrūšiuokite masyvą taip, kad jo didžiausia reikšmė būtų masyvo viduryje, o einant nuo jos link masyvo pradžios ir pabaigos reikšmės mažėtų. Paskaičiuokite pirmos ir antros masyvo dalies sumas (neskaičiuojant vidurinės). Jeigu sumų skirtumas (modulis, absoliutus dydis) yra didesnis nei | 30 | rūšiavimą kartokite. (Kad sumos nesiskirtų viena nuo kitos daugiau nei per 30)';
+$array11 = []; 
+while (count($array11) < 101) {
+    $numb11 = rand(0, 300);
+    if (!in_array($numb11, $array11)) {
+        array_push($array11, $numb11);
+    }
+}
+echo '<pre>';
+sort($array11);
+print_r($array11);
+echo '<br><br>';
+
+echo 'masyvo ilgis: ' . count($array11);
+$array11A = [];
+$array11B = [];
+for ($i = 0; $i < count($array11); $i+=2) {
+    array_push($array11A, $array11[$i]);
+}
+for ($i = 1; $i < count($array11); $i+=2) {
+    array_push($array11B, $array11[$i]);    
+}
+echo '<br><br>';
+rsort($array11A);
+print_r($array11A);
+
+$sum11A = array_sum($array11A) - $array11A[0];
+echo '<br><br>';
+echo 'Suma A be didziausios reiksmes: ' . $sum11A;
+
+echo '<br><br>';
+print_r($array11B);
+$sum11B = array_sum($array11B);
+echo '<br><br>';
+echo 'Suma B: ' . $sum11B;
+
+$subtraction = $sum11B - $sum11A;
+echo 'Skirtumas yra: ' . $subtraction;
+
+$array11C = array_merge($array11B, $array11A);
+echo '<br><br>';
+print_r($array11C);
+echo '<br><br>';
