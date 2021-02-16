@@ -156,7 +156,7 @@ echo "'D' raidžių yra: $countD";
 <?php
 
 echo 'Išrūšiuokite 3 uždavinio masyvą pagal abecėlę.';
-
+echo '<br><br>';
 $array4 = $array3;
 // echo '<pre>';
 sort($array4);
@@ -191,8 +191,8 @@ for ($i = 0; $i < 200; $i++) {
 // echo '<br><br>';
 // print_r($array5C);
 $array5D = [];
-for ($i=0; $i < 200; $i++) {
-    $element5 = $array5A[$i].$array5B[$i].$array5C[$i]; 
+for ($i = 0; $i < 200; $i++) {
+    $element5 = $array5A[$i] . $array5B[$i] . $array5C[$i];
     array_push($array5D, $element5);
 }
 echo '<pre>';
@@ -209,7 +209,7 @@ print_r($array6D);
 echo '<br>';
 echo '</pre>';
 
-echo 'Iš viso skirtingų kombinacijų yra: '. count($array6D);
+echo 'Iš viso skirtingų kombinacijų yra: ' . count($array6D);
 ?>
 
 <h2>ND nr.6</h2>
@@ -220,30 +220,21 @@ echo 'Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nu
 echo '<br><br>';
 $array6A = [];
 $array6B = [];
-for($i = 0; $i < 100; $i++) {
+while (count($array6A) < 100) {
     $element = rand(100, 999);
+    if (!in_array($element, $array6A)) {
     array_push($array6A, $element);
-    $element2 = rand(100, 999);
-    array_push($array6B, $element2);
-}
-$array6C = [];
-$array6F = [];
-foreach($array6A as $value) {
-    if (!in_array($value, $array6C)) {
-        array_push($array6C, $value);
     }
 }
-foreach ($array6B as $value) {
-    if (!in_array($value, $array6F)) {
-        array_push($array6F, $value);
+while (count($array6B) < 100) {
+    $element = rand(100, 999);
+    if (!in_array($element, $array6B)) {
+    array_push($array6B, $element);
     }
 }
-// echo '<pre>';
-// sort($array6C);
-print_r($array6C);
+print_r($array6A);
 echo '<br><br>';
-// sort($array6F);
-print_r($array6F);
+print_r($array6B);
 echo '<br>';
 ?>
 
@@ -257,7 +248,7 @@ $array7A = $array6A;
 $array7B = $array6B;
 $array7C = [];
 for ($i = 0; $i < 100; $i++) {
-    if(!in_array($array7A[$i], $array7B)) {
+    if (!in_array($array7A[$i], $array7B)) {
         array_push($array7C, $array7A[$i]);
     }
 }
@@ -275,7 +266,7 @@ $array8A = $array6A;
 $array8B = $array6B;
 $array8C = [];
 for ($i = 0; $i < 100; $i++) {
-    if(in_array($array8A[$i], $array8B)) {
+    if (in_array($array8A[$i], $array8B)) {
         array_push($array8C, $array8A[$i]);
         // $array8C[$i] = $array8A[$i];
     }
@@ -283,7 +274,7 @@ for ($i = 0; $i < 100; $i++) {
 // sort($array8C);
 print_r($array8C);
 ?>
- 
+
 <h2>ND nr.9</h2>
 
 <?php
@@ -294,7 +285,7 @@ print_r($array6A);
 echo '<br><br>';
 print_r($array6B);
 echo '<br><br>';
-for ($i=0; $i < 100; $i++) { 
+for ($i = 0; $i < 100; $i++) {
     $array9[$array6A[$i]] = $array6B[$i];
 }
 // echo '<pre>';
@@ -310,8 +301,8 @@ echo '<br><br>';
 $num1 = rand(5, 25);
 $num2 = rand(5, 25);
 $array10 = [$num1, $num2];
-for ($i=0; $i < 8; $i++) { 
-    $array10[$i+2] = $array10[$i] + $array10[$i+1];
+for ($i = 0; $i < 8; $i++) {
+    $array10[$i + 2] = $array10[$i] + $array10[$i + 1];
 }
 echo '<pre>';
 print_r($array10);
@@ -326,7 +317,7 @@ echo 'Sugeneruokite 101 elemento masyvą su atsitiktiniais skaičiais nuo 0 iki 
 echo '<br><br>';
 
 // sukuriam masyva su atsitiktiniais skaiciais
-$array11 = []; 
+$array11 = [];
 while (count($array11) < 101) {
     $numb11 = rand(0, 300);
     if (!in_array($numb11, $array11)) {
@@ -340,18 +331,18 @@ echo '<br><br>';
 
 
 // isrusiuojam didejimo tvarka
-sort($array11); 
+sort($array11);
 print_r($array11);
 echo '<br><br>';
 
 // padarom du atskirus masyvus su kas atra reiksme
 $array11A = [];
 $array11B = [];
-for ($i = 0; $i < count($array11); $i+=2) {
+for ($i = 0; $i < count($array11); $i += 2) {
     array_push($array11A, $array11[$i]);
 }
-for ($i = 1; $i < count($array11); $i+=2) {
-    array_push($array11B, $array11[$i]);    
+for ($i = 1; $i < count($array11); $i += 2) {
+    array_push($array11B, $array11[$i]);
 }
 echo '<br><br>';
 print_r($array11A);
