@@ -3,10 +3,16 @@
 <?php
 // echo '<pre>';
 echo 'Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.';
+echo '<br><br>';
 $array = [];
 // echo '<pre>';
-for ($i = 0; $i < 30; $i++) {
-    array_push($array, rand(5, 25));
+// for ($i = 0; $i < 30; $i++) {
+//     array_push($array, rand(5, 25));
+
+// }
+// kitas budas:
+foreach (range(1, 30) as $value) {
+    $array[] = rand(5, 25);
 }
 print_r($array);
 ?>
@@ -91,7 +97,7 @@ echo '<br><br>';
 // print_r($array);
 // echo '<br><br>';
 for ($i = 0; $i < count($array); $i++) {
-    if ($array[$i] < 10) {
+    if ($array[$i] > 10) {
         echo $i;
         break;
     }
@@ -100,21 +106,13 @@ echo '<br><br>';
 echo 'i) Naudodami funkciją unset() iš masyvo ištrinkite visus elementus turinčius porinį indeksą';
 echo '<br><br>';
 $array2I = $array;
-// foreach ($array2I as $key => $value) {
-//     if ($key % 2 === 0) {
-//         unset($array2I[$key]);
-//     }
-// }
-$ilgis = count($array2I);
-for ($i = 0; $i < $ilgis; $i++) {
-    if ($i % 2 === 0) {
-        unset($array2I[$i]);
+foreach ($array2I as $key => $value) {
+    if ($key % 2 === 0) {
+        unset($array2I[$key]);
     }
 }
 print_r($array2I);
 echo '<br><br>';
-
-echo count($array2I);
 ?>
 
 <h2>ND nr.3</h2>
@@ -208,7 +206,6 @@ echo '</pre>';
 print_r($array6D);
 echo '<br>';
 echo '</pre>';
-
 echo 'Iš viso skirtingų kombinacijų yra: ' . count($array6D);
 ?>
 
@@ -223,13 +220,13 @@ $array6B = [];
 while (count($array6A) < 100) {
     $element = rand(100, 999);
     if (!in_array($element, $array6A)) {
-    array_push($array6A, $element);
+        array_push($array6A, $element);
     }
 }
 while (count($array6B) < 100) {
     $element = rand(100, 999);
     if (!in_array($element, $array6B)) {
-    array_push($array6B, $element);
+        array_push($array6B, $element);
     }
 }
 print_r($array6A);
@@ -313,9 +310,13 @@ print_r($array10);
 
 <?php
 
-echo 'Sugeneruokite 101 elemento masyvą su atsitiktiniais skaičiais nuo 0 iki 300. Reikšmes kurios tame masyve yra ne unikalios pergeneruokite iš naujo taip, kad visos reikšmės masyve būtų unikalios. Išrūšiuokite masyvą taip, kad jo didžiausia reikšmė būtų masyvo viduryje, o einant nuo jos link masyvo pradžios ir pabaigos reikšmės mažėtų. Paskaičiuokite pirmos ir antros masyvo dalies sumas (neskaičiuojant vidurinės). Jeigu sumų skirtumas (modulis, absoliutus dydis) yra didesnis nei | 30 | rūšiavimą kartokite. (Kad sumos nesiskirtų viena nuo kitos daugiau nei per 30)';
+echo 'Sugeneruokite 101 elemento masyvą su atsitiktiniais skaičiais nuo 0 iki 300. Reikšmes kurios tame 
+masyve yra ne unikalios pergeneruokite iš naujo taip, kad visos reikšmės masyve būtų unikalios. Išrūšiuokite
+masyvą taip, kad jo didžiausia reikšmė būtų masyvo viduryje, o einant nuo jos link masyvo pradžios ir
+pabaigos reikšmės mažėtų. Paskaičiuokite pirmos ir antros masyvo dalies sumas (neskaičiuojant vidurinės).
+Jeigu sumų skirtumas (modulis, absoliutus dydis) yra didesnis nei | 30 | rūšiavimą kartokite. (Kad sumos
+nesiskirtų viena nuo kitos daugiau nei per 30)';
 echo '<br><br>';
-
 // sukuriam masyva su atsitiktiniais skaiciais
 $array11 = [];
 while (count($array11) < 101) {
@@ -324,18 +325,13 @@ while (count($array11) < 101) {
         array_push($array11, $numb11);
     }
 }
-echo '<pre>';
-
-echo 'Pradine suma: ' . array_sum($array11);
-echo '<br><br>';
-
 
 // isrusiuojam didejimo tvarka
 sort($array11);
 print_r($array11);
 echo '<br><br>';
 
-// padarom du atskirus masyvus su kas atra reiksme
+// padarom du atskirus masyvus su kas antra reiksme
 $array11A = [];
 $array11B = [];
 for ($i = 0; $i < count($array11); $i += 2) {
@@ -347,30 +343,32 @@ for ($i = 1; $i < count($array11); $i += 2) {
 echo '<br><br>';
 print_r($array11A);
 
-// sumuoju kaire puse be didziausios reiksmes
-$sum11A = array_sum($array11A) - $array11A[50];
-echo '<br><br>';
-echo 'Suma A be didziausios reiksmes: ' . $sum11A;
-
-echo '<br><br>';
-// apverciam antra masyva
+// apverciam desini masyva
 rsort($array11B);
 print_r($array11B);
+$count11 = 0;
+do {
+    // sumuoju kaire puse be didziausios reiksmes
+    $sum11A = array_sum($array11A) - $array11A[50];
+ 
+    // sumuoju desine puse
+    $sum11B = array_sum($array11B);
 
-// sumuoju desine puse
-$sum11B = array_sum($array11B);
-echo '<br><br>';
-echo 'Suma B: ' . $sum11B;
-echo '<br><br>';
+    // randu skirtumus
+    $subtraction1 = $sum11B - $sum11A;
+    echo 'Skirtumas atemus is desines kaire yra: ' . $subtraction1;
+    echo '<br>';
 
-// randu skirtuma
-$subtraction = $sum11B - $sum11A;
-echo 'Skirtumas yra: ' . $subtraction;
+    // tol kol skirtumas bus daugiau nei 30 sukeitinesiu kaires ir desines masyvu vertes pradedant nuo krastu ir einant link centro
+    if ($subtraction1 > 30) {
+        $temp = $array11A[$count11];
+        $array11A[$count11] = $array11B[count($array11B) - 1 - $count11];
+        $array11B[count($array11B) - 1 - $count11] = $temp;
+        $count11++;
+    }
+} while ($subtraction1 > 30);
 
-// sujungiam masyvus
+// kai salyga ispildoma sujungiam masyvus
 $array11C = array_merge($array11A, $array11B);
 echo '<br><br>';
 print_r($array11C);
-echo '<br><br>';
-
-echo 'Paskute suma: ' . array_sum($array11C);
